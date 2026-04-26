@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collection Completion | ReRoute Collect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="completion">
+  <div class="app-shell">
+    <header class="top-nav glass-card">
+      <a class="brand" href="index.html"><i class="fa-solid fa-recycle"></i> ReRoute Collect</a>
+      <nav>
+        <a href="route-plan.html">Submit Route Plan</a>
+        <a href="approval-dashboard.html">Approval Dashboard</a>
+        <a class="active" href="collection-completion.html">Collection Completion</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="hero compact glass-card">
+        <div>
+          <p class="tag">Post-route reporting</p>
+          <h1>Collection Completion</h1>
+          <p>Record actual quantities, visited points, and field issues for approved routes.</p>
+        </div>
+      </section>
+
+      <section class="glass-card form-card">
+        <h2><i class="fa-solid fa-list-check"></i> Select Approved Route</h2>
+        <label>Approved routes
+          <select id="approvedRouteSelect">
+            <option value="">Choose a route</option>
+          </select>
+        </label>
+        <div id="approvedEmpty" class="empty-state hidden">
+          <i class="fa-solid fa-circle-info"></i>
+          <p>No approved routes available yet. Approve a route first in the dashboard.</p>
+        </div>
+      </section>
+
+      <form id="completionForm" class="glass-card form-card hidden">
+        <h2><i class="fa-solid fa-clipboard-check"></i> Completion Record</h2>
+        <div id="selectedRouteSummary" class="inner-card route-summary"></div>
+
+        <div class="form-grid">
+          <label>Actual start time *<input required name="actualStartTime" type="time" /></label>
+          <label>Actual end time *<input required name="actualEndTime" type="time" /></label>
+          <label>Actual distance covered (km) *<input required min="0" step="0.1" name="actualDistance" type="number" /></label>
+          <label>Fuel used (L) *<input required min="0" step="0.1" name="fuelUsed" type="number" /></label>
+          <label>Actual bottles collected<input min="0" name="actualBottles" type="number" /></label>
+          <label>Actual cullet collected (kg)<input min="0" step="0.1" name="actualCullet" type="number" /></label>
+          <label>Number of collection points visited *<input required min="0" name="pointsVisited" type="number" /></label>
+          <label>Missed collection points<input min="0" name="missedPoints" type="number" /></label>
+          <label class="full-width">Reason for missed points<textarea name="missedReason" rows="2"></textarea></label>
+          <label class="full-width">Issues encountered<textarea name="issuesEncountered" rows="3"></textarea></label>
+          <label>Photo upload (UI only)<input name="photoUpload" type="file" accept="image/*" /></label>
+          <label class="full-width">Collector final remarks<textarea name="finalRemarks" rows="3"></textarea></label>
+        </div>
+
+        <h3><i class="fa-solid fa-map-pin"></i> Collection Point Completion</h3>
+        <div id="pointCompletionContainer"></div>
+
+        <div class="actions-row">
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Submit Completion Record</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <template id="pointCompletionTemplate">
+    <article class="collection-point glass-card inner-card">
+      <h4 class="point-title"></h4>
+      <div class="form-grid">
+        <label>Visited? *
+          <select name="visited" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+        <label>Actual bottles collected<input min="0" type="number" name="actualBottles" /></label>
+        <label>Actual cullet collected (kg)<input min="0" step="0.1" type="number" name="actualCullet" /></label>
+        <label class="full-width">Issue/comment<textarea rows="2" name="issueComment"></textarea></label>
+      </div>
+    </article>
+  </template>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
