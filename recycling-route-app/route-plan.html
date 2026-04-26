@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Route Plan Submission | ReRoute Collect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="route-plan">
+  <div class="app-shell">
+    <header class="top-nav glass-card">
+      <a class="brand" href="index.html"><i class="fa-solid fa-recycle"></i> ReRoute Collect</a>
+      <nav>
+        <a class="active" href="route-plan.html">Submit Route Plan</a>
+        <a href="approval-dashboard.html">Approval Dashboard</a>
+        <a href="collection-completion.html">Collection Completion</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="hero compact glass-card">
+        <div>
+          <p class="tag">Field route intake</p>
+          <h1>Route Plan Submission</h1>
+          <p>Create an accurate route blueprint for recyclable bottles and cullet collection operations.</p>
+        </div>
+      </section>
+
+      <form id="routePlanForm" class="glass-card form-card">
+        <h2><i class="fa-solid fa-file-circle-plus"></i> Plan Details</h2>
+        <div class="form-grid">
+          <label>Collector name *<input required name="collectorName" type="text" /></label>
+          <label>Collector phone number *<input required name="collectorPhone" type="tel" /></label>
+          <label>Collection date *<input required name="collectionDate" type="date" /></label>
+          <label>Vehicle registration number *<input required name="vehicleReg" type="text" /></label>
+          <label>Driver name *<input required name="driverName" type="text" /></label>
+          <label>Route name *<input required name="routeName" type="text" /></label>
+          <label>Starting location *<input required name="startLocation" type="text" /></label>
+          <label>Destination/collection area *<input required name="destination" type="text" /></label>
+          <label>Estimated route distance (km) *<input required min="0" step="0.1" name="estimatedDistance" type="number" /></label>
+          <label>Estimated start time *<input required name="estimatedStartTime" type="time" /></label>
+          <label>Estimated end time *<input required name="estimatedEndTime" type="time" /></label>
+          <label>Material type *
+            <select required name="materialType">
+              <option value="">Select material</option>
+              <option>Bottles</option>
+              <option>Cullet</option>
+              <option>Both Bottles and Cullet</option>
+            </select>
+          </label>
+          <label>Fuel estimate (L) *<input required min="0" step="0.1" name="fuelEstimate" type="number" /></label>
+          <label>Expected total quantity *<input required name="expectedTotalQuantity" type="text" placeholder="e.g. 1200 bottles + 850kg cullet" /></label>
+          <label class="full-width">Safety notes *<textarea required name="safetyNotes" rows="3"></textarea></label>
+          <label class="full-width">Additional remarks<textarea name="additionalRemarks" rows="3"></textarea></label>
+        </div>
+
+        <div class="collection-points-header">
+          <h3><i class="fa-solid fa-location-dot"></i> Collection Points</h3>
+          <button type="button" id="addCollectionPoint" class="btn btn-secondary"><i class="fa-solid fa-plus"></i> Add collection point</button>
+        </div>
+        <div id="collectionPointsContainer"></div>
+
+        <div class="actions-row">
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Submit route plan</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <template id="collectionPointTemplate">
+    <article class="collection-point glass-card inner-card">
+      <div class="collection-point-top">
+        <h4>Collection Point <span class="point-index"></span></h4>
+        <button type="button" class="btn btn-danger remove-point"><i class="fa-solid fa-trash"></i> Remove</button>
+      </div>
+      <div class="form-grid">
+        <label>Space name *<input required name="spaceName" type="text" /></label>
+        <label>Location/address *<input required name="spaceAddress" type="text" /></label>
+        <label>Contact person *<input required name="contactPerson" type="text" /></label>
+        <label>Contact phone *<input required name="contactPhone" type="tel" /></label>
+        <label>Expected bottles quantity<input min="0" name="expectedBottles" type="number" /></label>
+        <label>Expected cullet quantity (kg)<input min="0" step="0.1" name="expectedCullet" type="number" /></label>
+        <label class="full-width">Notes<textarea name="pointNotes" rows="2"></textarea></label>
+      </div>
+    </article>
+  </template>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
